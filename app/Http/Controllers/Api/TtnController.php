@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\TtnRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 
 class TtnController extends BaseApiController
 {
@@ -25,5 +27,23 @@ class TtnController extends BaseApiController
     public function __construct(TtnRepositoryInterface $repository)
     {
         parent::__construct($repository);
+    }
+
+        public function index(): JsonResponse
+    {
+        $criteria = array_filter(
+            request()->only(['id', 'idPlant', 'idOrder', 'dispatcher', 'vProduct', 'driver', 'car', 'finishAdress', 'finishDate', 'state', 'isPause', 'idProduct', 'idBsu']),
+            static fn ($value) => $value !== null && $value !== ''
+        );
+
+        $ttn = empty($criteria)
+            ? $this->repository->all()
+            : $this->repository->search($criteria);
+
+        return response()->json([
+            'success' => true,
+            'data' => $ttn,
+            'total' => $ttn->count(),
+        ]);
     }
 }
