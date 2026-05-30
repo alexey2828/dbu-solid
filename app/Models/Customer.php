@@ -24,7 +24,6 @@ class Customer extends Model
         'id' => 'integer'
     ];
     
-    // Связь с заказами
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class, 'idCustomer', 'id');
