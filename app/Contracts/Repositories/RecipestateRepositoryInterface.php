@@ -2,9 +2,4 @@
 
 namespace App\Contracts\Repositories;
 
-use Illuminate\Database\Eloquent\Collection;
-
-interface RecipestateRepositoryInterface extends RepositoryInterface
-{
-    public function getAllWithSpecificFields(): Collection;
-}
+interface RecipestateRepositoryInterface extends RepositoryInterface {}

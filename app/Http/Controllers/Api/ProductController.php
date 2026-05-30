@@ -6,8 +6,6 @@ use App\Contracts\Repositories\ProductRepositoryInterface;
 
 class ProductController extends BaseApiController
 {
-    public array $validationRules = [];
-
     public function __construct(ProductRepositoryInterface $repository)
     {
         parent::__construct($repository);

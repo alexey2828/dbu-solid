@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\RepositoryInterface;
+use App\Http\Requests\Api\ResourceRequest;
+use App\Http\Resources\ApiResource;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 abstract class BaseApiController
 {
     public RepositoryInterface $repository;
-
-    public array $validationRules = [];
-
-    protected array $allowedFields = ['*'];
 
     public function __construct(RepositoryInterface $repository)
     {
@@ -32,7 +29,7 @@ abstract class BaseApiController
 
         return response()->json([
             'success' => true,
-            'data' => $data,
+            'data' => ApiResource::collection($data),
             'total' => $data->count(),
         ]);
     }
@@ -41,47 +38,31 @@ abstract class BaseApiController
     {
         $record = $this->repository->find($id);
 
-        if (! $record) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Record not found',
-            ], 404);
-        }
-
         return response()->json([
             'success' => true,
-            'data' => $record,
+            'data' => new ApiResource($record),
         ]);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(ResourceRequest $request): JsonResponse
     {
-        $validated = $request->validate($this->validationRules);
-
-        $record = $this->repository->create($validated);
+        $record = $this->repository->create($request->validated());
 
         return response()->json([
             'success' => true,
             'message' => 'Record created successfully',
-            'data' => $record,
+            'data' => new ApiResource($record),
         ], 201);
     }
 
-    public function update(Request $request, int $id): JsonResponse
+    public function update(ResourceRequest $request, int $id): JsonResponse
     {
-        $record = $this->repository->update($id, $request->all());
-
-        if (! $record) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Record not found',
-            ], 404);
-        }
+        $record = $this->repository->update($id, $request->validated());
 
         return response()->json([
             'success' => true,
             'message' => 'Record updated successfully',
-            'data' => $record,
+            'data' => new ApiResource($record),
         ]);
     }
 

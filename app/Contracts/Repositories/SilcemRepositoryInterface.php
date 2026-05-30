@@ -2,17 +2,4 @@
 
 namespace App\Contracts\Repositories;
 
-use Illuminate\Database\Eloquent\Collection;
-
-interface SilcemRepositoryInterface extends RepositoryInterface
-{
-    public function getAllWithSpecificFields(): Collection;
-
-    /**
-     * Search Silcem by multiple criteria
-     *
-     * @param  array  $criteria  Search criteria (id, codeBSU)
-     */
-
-    public function search(array $criteria): Collection;
-}
+interface SilcemRepositoryInterface extends RepositoryInterface {}

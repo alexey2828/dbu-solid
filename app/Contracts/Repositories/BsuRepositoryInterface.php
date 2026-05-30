@@ -2,18 +2,4 @@
 
 namespace App\Contracts\Repositories;
 
-use Illuminate\Database\Eloquent\Collection;
-
-interface BsuRepositoryInterface extends RepositoryInterface
-{
-    public function getAllWithSpecificFields(): Collection;
-
-    public function getWorkingBsu(): Collection;
-
-    /**
-     * Search BSU by multiple criteria
-     *
-     * @param  array  $criteria  Search criteria (id, codePlant, name, vMixer, isWork, code)
-     */
-    public function search(array $criteria): Collection;
-}
+interface BsuRepositoryInterface extends RepositoryInterface {}

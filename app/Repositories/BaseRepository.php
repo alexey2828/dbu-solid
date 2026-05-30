@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 abstract class BaseRepository implements RepositoryInterface
 {
     protected Model $model;
+
     protected array $filterable = [];
 
     public function __construct(Model $model)
@@ -49,17 +50,17 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->filter($criteria);
     }
 
-    public function find(int $id)
+    public function find(int $id): Model
     {
         return $this->model->findOrFail($id);
     }
 
-    public function create(array $data)
+    public function create(array $data): Model
     {
         return $this->model->create($data);
     }
 
-    public function update(int $id, array $data)
+    public function update(int $id, array $data): Model
     {
         $record = $this->find($id);
         $record->update($data);

@@ -12,14 +12,14 @@ class RegisterResourceMiddleware
     {
         $resource = $request->route('resource');
 
-        if (!$resource) {
+        if (! $resource) {
             return $next($request);
         }
 
         $resource = Str::of($resource)->lower()->value();
         $config = config("models.{$resource}");
 
-        if (!$config) {
+        if (! $config) {
             $singularResource = Str::singular($resource);
             $config = config("models.{$singularResource}");
 
@@ -28,7 +28,7 @@ class RegisterResourceMiddleware
             }
         }
 
-        if (!$config) {
+        if (! $config) {
             abort(404, "Resource '{$resource}' not found");
         }
 
@@ -37,7 +37,6 @@ class RegisterResourceMiddleware
 
         if ($controller) {
             $controller->repository = app($repositoryClass);
-            $controller->validationRules = $config['validation'] ?? [];
         }
 
         return $next($request);

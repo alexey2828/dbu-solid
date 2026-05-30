@@ -13,9 +13,4 @@ class TtnRepository extends BaseRepository implements TtnRepositoryInterface
     {
         parent::__construct($model);
     }
-
-    public function getAllWithSpecificFields(): Collection
-    {
-        return $this->model->select('id', 'idPlant', 'idOrder', 'dispatcher', 'vProduct', 'driver', 'car', 'finishAdress', 'finishDate', 'state', 'isPause', 'idProduct', 'idBsu')->get();
-    }
 }

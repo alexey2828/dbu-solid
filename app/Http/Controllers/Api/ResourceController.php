@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Api\ResourceRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ResourceController extends BaseApiController
 {
@@ -22,12 +22,12 @@ class ResourceController extends BaseApiController
         return parent::show($this->resolveRouteId($id));
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(ResourceRequest $request): JsonResponse
     {
         return parent::store($request);
     }
 
-    public function update(Request $request, int|string $id): JsonResponse
+    public function update(ResourceRequest $request, int|string $id): JsonResponse
     {
         return parent::update($request, $this->resolveRouteId($id));
     }
