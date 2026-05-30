@@ -14,12 +14,5 @@ interface OrderRepositoryInterface extends RepositoryInterface
      * @param  array  $criteria  Search criteria (id, idCustomer, idPlant, dispatcher, nameRecipe, dateStart, dateFinish)
      */
     public function search(array $criteria): Collection;
-
-    public function getByState(string $state): Collection;
-
-    public function getByDateRange(string $startDate, string $endDate): Collection;
-
-    public function getActiveOrdersCount(): int;
-
-    public function getRecentOrders(int $limit): Collection;
+  
 }
