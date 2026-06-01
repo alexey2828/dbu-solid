@@ -47,9 +47,10 @@ class RepositoryServiceProvider extends ServiceProvider
         RepositoryContracts\TtnstateRepositoryInterface::class => Repositories\TtnstateRepository::class,
         RepositoryContracts\UserRepositoryInterface::class => Repositories\UserRepository::class,
         RepositoryContracts\WeightmanualRepositoryInterface::class => Repositories\WeightmanualRepository::class,
+        RepositoryContracts\RecipedescriptionRepositoryInterface::class => Repositories\RecipedescriptionRepository::class,
         ServiceContracts\AnalizeTotalVByComponentsServiceInterface::class => Services\AnalizeTotalVByComponentsService::class,
         ServiceContracts\AnalizeTotalVServiceInterface::class => Services\AnalizeTotalVService::class,
         ServiceContracts\BsuSearchServiceInterface::class => Services\BsuSearchService::class,
-        RepositoryContracts\RecipedescriptionRepositoryInterface::class => Repositories\RecipedescriptionRepository::class,
+        ServiceContracts\RecipeExportServiceInterface::class => Services\RecipeExportService::class,
     ];
 }

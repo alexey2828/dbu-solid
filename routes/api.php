@@ -22,8 +22,9 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ReccommentController;
 use App\Http\Controllers\Api\RecfrostController;
 use App\Http\Controllers\Api\RecipeController;
-use App\Http\Controllers\Api\RecipestateController;
 use App\Http\Controllers\Api\RecipedescriptionController;
+use App\Http\Controllers\Api\RecipeExportController;
+use App\Http\Controllers\Api\RecipestateController;
 use App\Http\Controllers\Api\RecmarkaController;
 use App\Http\Controllers\Api\RecmobilityController;
 use App\Http\Controllers\Api\RecstrengthController;
@@ -58,6 +59,7 @@ Route::apiResource('product', ProductController::class)->only(['index', 'show', 
 Route::apiResource('rec-comment', ReccommentController::class);
 Route::apiResource('rec-frost', RecfrostController::class);
 Route::apiResource('recipe', RecipeController::class);
+Route::get('recipe-export', [RecipeExportController::class, 'export']);
 Route::apiResource('recipe-state', RecipestateController::class)->only(['index', 'show', 'store']);
 Route::apiResource('rec-marka', RecmarkaController::class);
 Route::apiResource('rec-mobility', RecmobilityController::class);
