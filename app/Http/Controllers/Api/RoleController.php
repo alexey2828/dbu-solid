@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\RoleRepositoryInterface;
 
-class RoleController extends BaseApiController
+class RoleController extends CrudApiController
 {
     public function __construct(RoleRepositoryInterface $repository)
     {

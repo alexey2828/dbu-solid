@@ -6,7 +6,7 @@ use App\Contracts\Repositories\CarRepositoryInterface;
 use App\Http\Resources\ApiResource;
 use Illuminate\Http\JsonResponse;
 
-class CarController extends BaseApiController
+class CarController extends CrudApiController
 {
     public function __construct(private readonly CarRepositoryInterface $cars)
     {

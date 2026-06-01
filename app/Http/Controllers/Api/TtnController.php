@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\TtnRepositoryInterface;
 
-class TtnController extends BaseApiController
+class TtnController extends CrudApiController
 {
     public function __construct(TtnRepositoryInterface $repository)
     {

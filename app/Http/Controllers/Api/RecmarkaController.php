@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\RecmarkaRepositoryInterface;
 
-class RecmarkaController extends BaseApiController
+class RecmarkaController extends CrudApiController
 {
     public function __construct(RecmarkaRepositoryInterface $repository)
     {

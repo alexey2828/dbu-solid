@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\WeightmanualRepositoryInterface;
 
-class WeightmanualController extends BaseApiController
+class WeightmanualController extends CrudApiController
 {
     public function __construct(WeightmanualRepositoryInterface $repository)
     {

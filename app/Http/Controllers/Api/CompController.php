@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\CompRepositoryInterface;
 
-class CompController extends BaseApiController
+class CompController extends CrudApiController
 {
     public function __construct(CompRepositoryInterface $repository)
     {

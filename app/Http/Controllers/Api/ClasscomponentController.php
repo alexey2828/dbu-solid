@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\ClasscomponentRepositoryInterface;
 
-class ClasscomponentController extends BaseApiController
+class ClasscomponentController extends CrudApiController
 {
     public function __construct(ClasscomponentRepositoryInterface $repository)
     {

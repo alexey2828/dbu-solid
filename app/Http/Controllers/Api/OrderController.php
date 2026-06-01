@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\OrderRepositoryInterface;
 
-class OrderController extends BaseApiController
+class OrderController extends CrudApiController
 {
     public function __construct(OrderRepositoryInterface $repository)
     {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\RecfrostRepositoryInterface;
 
-class RecfrostController extends BaseApiController
+class RecfrostController extends CrudApiController
 {
     public function __construct(RecfrostRepositoryInterface $repository)
     {

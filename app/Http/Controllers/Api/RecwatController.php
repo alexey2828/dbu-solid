@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\RecwatRepositoryInterface;
 
-class RecwatController extends BaseApiController
+class RecwatController extends CrudApiController
 {
     public function __construct(RecwatRepositoryInterface $repository)
     {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\UserRepositoryInterface;
 
-class UserController extends BaseApiController
+class UserController extends CrudApiController
 {
     public function __construct(UserRepositoryInterface $repository)
     {

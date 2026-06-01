@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\PlantRepositoryInterface;
 
-class PlantController extends BaseApiController
+class PlantController extends CrudApiController
 {
     public function __construct(PlantRepositoryInterface $repository)
     {
