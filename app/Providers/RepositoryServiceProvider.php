@@ -50,7 +50,6 @@ class RepositoryServiceProvider extends ServiceProvider
         RepositoryContracts\RecipedescriptionRepositoryInterface::class => Repositories\RecipedescriptionRepository::class,
         ServiceContracts\AnalizeTotalVByComponentsServiceInterface::class => Services\AnalizeTotalVByComponentsService::class,
         ServiceContracts\AnalizeTotalVServiceInterface::class => Services\AnalizeTotalVService::class,
-        ServiceContracts\BsuSearchServiceInterface::class => Services\BsuSearchService::class,
         ServiceContracts\RecipeExportServiceInterface::class => Services\RecipeExportService::class,
         ServiceContracts\RecipeImportServiceInterface::class => Services\RecipeImportService::class,
     ];
