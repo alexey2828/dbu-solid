@@ -52,5 +52,6 @@ class RepositoryServiceProvider extends ServiceProvider
         ServiceContracts\AnalizeTotalVServiceInterface::class => Services\AnalizeTotalVService::class,
         ServiceContracts\RecipeExportServiceInterface::class => Services\RecipeExportService::class,
         ServiceContracts\RecipeImportServiceInterface::class => Services\RecipeImportService::class,
+        ServiceContracts\AuthServiceInterface::class => Services\AuthService::class,
     ];
 }
