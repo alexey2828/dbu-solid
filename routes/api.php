@@ -60,6 +60,7 @@ Route::apiResource('rec-comment', ReccommentController::class);
 Route::apiResource('rec-frost', RecfrostController::class);
 Route::apiResource('recipe', RecipeController::class);
 Route::get('recipe-export', [RecipeExportController::class, 'export']);
+Route::post('recipe-import', [\App\Http\Controllers\Api\RecipeImportController::class, 'import']);
 Route::apiResource('recipe-state', RecipestateController::class)->only(['index', 'show', 'store']);
 Route::apiResource('rec-marka', RecmarkaController::class);
 Route::apiResource('rec-mobility', RecmobilityController::class);
