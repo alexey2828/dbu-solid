@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts\Services;
+namespace App\Contracts\Services\Ttn;
 
 use App\Models\Ttn;
 

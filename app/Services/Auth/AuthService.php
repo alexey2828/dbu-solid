@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Auth;
 
-use App\Contracts\Services\AuthServiceInterface;
+use App\Contracts\Services\Auth\AuthServiceInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;

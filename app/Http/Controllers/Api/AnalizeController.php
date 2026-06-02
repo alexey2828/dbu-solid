@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Contracts\Services\AnalizeTotalVServiceInterface;
+use App\Contracts\Services\Analyses\AnalizeTotalVServiceInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

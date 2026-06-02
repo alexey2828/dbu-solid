@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Analyses;
 
-use App\Contracts\Services\AnalizeTotalVServiceInterface;
+use App\Contracts\Services\Analyses\AnalizeTotalVByComponentsServiceInterface;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 use DateInterval;
 
-class AnalizeTotalVService implements AnalizeTotalVServiceInterface
+class AnalizeTotalVByComponentsService implements AnalizeTotalVByComponentsServiceInterface
 {
     protected function createDateRange(string $start_date, string $end_date, string $step): array
     {
@@ -84,16 +84,23 @@ class AnalizeTotalVService implements AnalizeTotalVServiceInterface
         $timeStart = $params['timeStart'] ?? null;
         $timeEnd = $params['timeEnd'] ?? null;
         $step = $params['step'] ?? 'day';
+        $compCode = $params['compCode'] ?? null;
         $bsuCode = $params['bsuCode'] ?? null;
         $car = $params['car'] ?? null;
         $driver = $params['driver'] ?? null;
         $orderId = $params['order'] ?? null;
         $dispencer = $params['dispencer'] ?? null;
         $idTtn = $params['idTtn'] ?? null;
+        $codePlant = $params['codePlant'] ?? null;
 
         $bsuCodes = [];
         if ($dispencer) {
             $bsuCodes = DB::table('silcem')->where('code', $dispencer)->pluck('codeBSU')->map(fn($v) => (int)$v)->toArray();
+        }
+
+        if ($codePlant) {
+            $plantBsuCodes = DB::table('bsu')->where('codePlant', $codePlant)->pluck('code')->map(fn($v) => (int)$v)->toArray();
+            $bsuCodes = array_merge($bsuCodes, $plantBsuCodes);
         }
 
         if ($bsuCode) {
@@ -107,7 +114,6 @@ class AnalizeTotalVService implements AnalizeTotalVServiceInterface
             $ttnIds = DB::table('ttn')->where('idOrder', $orderId)->pluck('id')->map(fn($v) => (int)$v)->toArray();
         }
 
-        // Prepare date filters
         if ($timeStart && $timeEnd) {
             if ($step === 'hour') {
                 $startDateTime = date('Y-m-d H:00:00', strtotime($timeStart));
@@ -124,12 +130,9 @@ class AnalizeTotalVService implements AnalizeTotalVServiceInterface
         $groupByExpression = $this->getGroupByExpression($step);
 
         $query = DB::table('product as p')
-            ->selectRaw("{$groupByExpression} as group_date, SUM(p.vProduct) as total_v_product");
-
-        if ($dispencer) {
-            $query->join('reportCurrentLoop as rcl', 'p.id', '=', 'rcl.idProduct')
-                  ->where('rcl.dispencer', $dispencer);
-        }
+            ->selectRaw("{$groupByExpression} as group_date, SUM(rcl.weightFactLoop) as fact_sum")
+            ->join('reportCurrentLoop as rcl', 'p.id', '=', 'rcl.idProduct')
+            ->where('rcl.code', $compCode ?: 0);
 
         if ($startDateTime && $endDateTime) {
             $query->whereBetween('p.timeEnd', [$startDateTime, $endDateTime]);
@@ -155,44 +158,44 @@ class AnalizeTotalVService implements AnalizeTotalVServiceInterface
             $query->where('p.driver', $driver);
         }
 
+        if ($dispencer) {
+            $query->where('rcl.dispencer', $dispencer);
+        }
+
         $query->groupBy('group_date')->orderBy('group_date');
 
         $rows = $query->get();
 
-        // Map results
-        $groupedData = [];
+        $progressByDate = [];
         foreach ($rows as $row) {
-            $groupKey = $row->group_date;
-            $vProduct = (float)$row->total_v_product;
-
+            $groupDate = $row->group_date;
             if ($step === 'week') {
-                [$year, $week] = explode('-', $groupKey);
+                [$year, $week] = explode('-', $groupDate);
                 $date = new DateTime();
                 $date->setISODate((int)$year, (int)$week);
-                $groupKey = $date->format('Y-m-d');
+                $groupDate = $date->format('Y-m-d');
             }
-
-            $groupedData[$groupKey] = round($vProduct, 2);
+            $progressByDate[$groupDate] = (float)$row->fact_sum;
         }
 
         $dateRange = [];
-        $totalVProductArray = [];
-
+        $consumptionValues = [];
         if ($timeStart && $timeEnd) {
             $dateRange = $this->createDateRange($timeStart, $timeEnd, $step);
             foreach ($dateRange as $date) {
-                $totalVProductArray[] = $groupedData[$date] ?? 0;
+                $consumptionValues[] = round($progressByDate[$date] ?? 0, 2);
             }
         } else {
-            foreach ($groupedData as $date => $value) {
+            foreach ($progressByDate as $date => $value) {
                 $dateRange[] = $date;
-                $totalVProductArray[] = $value;
+                $consumptionValues[] = round($value, 2);
             }
         }
 
         return [
             'dateRange' => $dateRange,
-            'totalVProduct' => $totalVProductArray,
+            'cumulativeValues' => $consumptionValues,
+            'step' => $step,
         ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Ttn;
 
 use App\Contracts\Repositories\TtnRepositoryInterface;
-use App\Contracts\Services\MqttPublisherServiceInterface;
-use App\Contracts\Services\TtnUpdateServiceInterface;
+use App\Contracts\Services\Mqtt\MqttPublisherServiceInterface;
+use App\Contracts\Services\Ttn\TtnUpdateServiceInterface;
 use App\Models\Ttn;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Contracts\Services\RecipeImportServiceInterface;
+use App\Contracts\Services\Recipe\RecipeImportServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 

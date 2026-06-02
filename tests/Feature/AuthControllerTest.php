@@ -1,6 +1,6 @@
 <?php
 
-use App\Contracts\Services\AuthServiceInterface;
+use App\Contracts\Services\Auth\AuthServiceInterface;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Validator;

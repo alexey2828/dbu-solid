@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\MqttPublisherService;
+use App\Services\Mqtt\MqttPublisherService;
 use Tests\TestCase;
 
 uses(TestCase::class);

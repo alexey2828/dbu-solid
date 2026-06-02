@@ -1,6 +1,6 @@
 <?php
 
-use App\Contracts\Services\RecipeExportServiceInterface;
+use App\Contracts\Services\Recipe\RecipeExportServiceInterface;
 use App\Http\Controllers\Api\RecipeExportController;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;

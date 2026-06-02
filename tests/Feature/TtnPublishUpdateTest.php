@@ -1,8 +1,8 @@
 <?php
 
 use App\Contracts\Repositories\TtnRepositoryInterface;
-use App\Contracts\Services\MqttPublisherServiceInterface;
-use App\Services\TtnUpdateService;
+use App\Contracts\Services\Mqtt\MqttPublisherServiceInterface;
+use App\Services\Ttn\TtnUpdateService;
 use App\Models\Ttn;
 use Illuminate\Support\Arr;
 

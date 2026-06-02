@@ -1,6 +1,6 @@
 <?php
 
-use App\Contracts\Services\RecipeImportServiceInterface;
+use App\Contracts\Services\Recipe\RecipeImportServiceInterface;
 use App\Http\Controllers\Api\RecipeImportController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Recipe;
 
-use App\Contracts\Services\RecipeImportServiceInterface;
+use App\Contracts\Services\Recipe\RecipeImportServiceInterface;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;

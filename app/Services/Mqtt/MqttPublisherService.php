@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Mqtt;
 
-use App\Contracts\Services\MqttPublisherServiceInterface;
+use App\Contracts\Services\Mqtt\MqttPublisherServiceInterface;
 use PhpMqtt\Client\ConnectionSettings;
 use PhpMqtt\Client\MqttClient;
 use PhpMqtt\Client\Exceptions\MqttClientException;

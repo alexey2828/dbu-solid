@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Contracts\Repositories\TtnRepositoryInterface;
-use App\Contracts\Services\TtnUpdateServiceInterface;
+use App\Contracts\Services\Ttn\TtnUpdateServiceInterface;
 use App\Http\Requests\TtnUpdateRequest;
 use App\Models\Ttn;
 use Illuminate\Http\JsonResponse;
