@@ -79,6 +79,7 @@ Route::middleware(\App\Http\Middleware\JwtAuthenticate::class)->group(function (
     Route::apiResource('role', RoleController::class);
     Route::apiResource('silcem', SilcemController::class);
     Route::apiResource('ttn', TtnController::class);
+    Route::post('ttn/{ttn}/publish-update', [TtnController::class, 'publishUpdate']);
     Route::apiResource('ttn-state', TtnstateController::class)->only(['index', 'show', 'store']);
     Route::apiResource('weight-manual', WeightmanualController::class);
     Route::apiResource('user', UserController::class);

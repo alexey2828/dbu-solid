@@ -53,5 +53,7 @@ class RepositoryServiceProvider extends ServiceProvider
         ServiceContracts\RecipeExportServiceInterface::class => Services\RecipeExportService::class,
         ServiceContracts\RecipeImportServiceInterface::class => Services\RecipeImportService::class,
         ServiceContracts\AuthServiceInterface::class => Services\AuthService::class,
+        ServiceContracts\MqttPublisherServiceInterface::class => Services\MqttPublisherService::class,
+        ServiceContracts\TtnUpdateServiceInterface::class => Services\TtnUpdateService::class,
     ];
 }
