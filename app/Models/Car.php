@@ -10,8 +10,6 @@ class Car extends Model
     use HasFactory;
 
     protected $table = 'car';
-
     public $timestamps = false;
-
     protected $fillable = ['name', 'codeRFID', 'maxV'];
 }
